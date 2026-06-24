@@ -1,136 +1,89 @@
-# Sistema de Control de Asistencia de Empleados
+Sistema Inteligente de Control de Asistencia
+📋 Descripción del Proyecto
+El Sistema Inteligente de Control de Asistencia es una aplicación web integral desarrollada para optimizar el registro y seguimiento de entradas y salidas del personal dentro de una organización.
 
-## Descripción del Proyecto
+La solución permite gestionar la información de los empleados mediante operaciones CRUD y automatizar el control de asistencia mediante la generación de códigos QR individuales, empleando una arquitectura Full-Stack moderna que separa la lógica de backend del cliente web.
 
-El Sistema de Control de Asistencia de Empleados es una aplicación web desarrollada para optimizar el registro y seguimiento de entradas y salidas del personal dentro de una organización.
+🎯 Objetivo
+Desarrollar un sistema que permita administrar la información de los empleados y apoyar el proceso de control de asistencia mediante tecnologías modernas de desarrollo de software, garantizando escalabilidad y una experiencia de usuario dinámica.
 
-La solución permite gestionar la información de los empleados mediante operaciones CRUD (Crear, Consultar, Actualizar y Eliminar) y generar códigos QR individuales para cada empleado, facilitando la automatización de procesos de control de asistencia.
+🚀 Tecnologías Utilizadas
+Backend
+Java 17
 
----
+Spring Boot
 
-## Objetivo
+Spring Data JPA / JDBC
 
-Desarrollar un sistema que permita administrar la información de los empleados y apoyar el proceso de control de asistencia mediante tecnologías modernas de desarrollo de software y conexión a bases de datos.
+Maven
 
----
+Spring Security
 
-## Tecnologías Utilizadas
+Base de Datos
+MySQL
 
-### Backend
+Frontend (Modernizado)
+React (Vite)
 
-* Java 17
-* Spring Boot
-* Spring Data JPA
-* JDBC
-* Maven
-* Spring Security
+Axios (para consumo de API REST)
 
-### Base de Datos
+React Router DOM
 
-* MySQL
+CSS3 (Diseño responsivo)
 
-### Frontend
+Control de Versiones
+Git
 
-* HTML5
-* CSS3
-* JavaScript
+GitHub
 
-### Control de Versiones
+Generación de QR
+ZXing (Zebra Crossing)
 
-* Git
-* GitHub
+💡 Funcionalidades Implementadas
+Gestión de Empleados
+Operaciones CRUD completas (Crear, Consultar, Actualizar y Eliminar).
 
-### Generación de QR
+Visualización mediante tablas dinámicas interactivas con consumo de datos vía axios.
 
-* ZXing (Zebra Crossing)
+Gestión de Asistencia
+Generación automática de códigos QR para cada empleado.
 
----
+Administración centralizada de registros.
 
-## Funcionalidades Implementadas
+Dashboard Dinámico
+Visualización de estadísticas de personal (empleados, supervisores, administradores) mediante consultas en tiempo real a la base de datos.
 
-### Gestión de Empleados
+Seguridad
+Configuración de autenticación mediante Spring Security.
 
-* Registrar empleados.
-* Consultar empleados.
-* Actualizar información de empleados.
-* Eliminar empleados.
+📂 Estructura del Repositorio
+Plaintext
+├── control-asistencia-backend/  # Lógica de servidor y API REST (Java/Spring Boot)
+└── frontend-asistencia/         # Interfaz de usuario dinámica (React/Vite)
+🏗️ Arquitectura Implementada
+El proyecto sigue una arquitectura por capas para garantizar escalabilidad:
 
-### Gestión de Asistencia
+Frontend (SPA - React): Consume la API y gestiona el estado de la aplicación.
 
-* Generación automática de códigos QR.
-* Visualización de códigos QR por empleado.
-* Administración centralizada de registros.
+API REST (Spring Boot): Expone los endpoints para la comunicación de datos.
 
-### Seguridad
+Service Layer: Contiene la lógica de negocio.
 
-* Configuración básica de autenticación mediante Spring Security.
+Repository Layer: Gestión de persistencia con JPA.
 
----
+Base de Datos (MySQL): Almacenamiento centralizado.
 
-## Estructura General del Proyecto
-
-```text
-src/
-│
-├── controller/
-├── entity/
-├── repository/
-├── service/
-├── security/
-├── config/
-│
-└── resources/
-    ├── static/
-    └── application.properties
-```
-
-## Arquitectura Implementada
-
-El proyecto sigue una arquitectura por capas:
-
-```text
-Cliente
-   │
-   ▼
-Controller
-   │
-   ▼
-Service
-   │
-   ▼
-Repository
-   │
-   ▼
-Base de Datos MySQL
-```
-
----
-
-## Base de Datos
-
-Motor utilizado:
-
-* MySQL
-
-Conexión realizada mediante JDBC y administrada por Spring Data JPA.
-
----
-
-## Evidencia Académica
-
+🎓 Evidencia Académica
 Proyecto desarrollado como evidencia:
 
-**GA7-220501096-AA2-EV01 – Codificación de módulos del software según requerimientos del proyecto**
+GA7-220501096-AA2-EV01 – Codificación de módulos del software según requerimientos del proyecto
 
 Programa de formación:
 
-**Tecnólogo en Análisis y Desarrollo de Software (SENA)**
+Tecnólogo en Análisis y Desarrollo de Software (SENA)
 
----
-
-## Autor
-
-**Jackson Montoya**
+👤 Autor
+Jackson Montoya Mercado
 
 Tecnólogo en Análisis y Desarrollo de Software
 
