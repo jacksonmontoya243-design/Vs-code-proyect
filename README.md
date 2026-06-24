@@ -1,92 +1,194 @@
-Sistema Inteligente de Control de Asistencia
-📋 Descripción del Proyecto
-El Sistema Inteligente de Control de Asistencia es una aplicación web integral desarrollada para optimizar el registro y seguimiento de entradas y salidas del personal dentro de una organización.
+# 🚀 Sistema Inteligente de Control de Asistencia
 
-La solución permite gestionar la información de los empleados mediante operaciones CRUD y automatizar el control de asistencia mediante la generación de códigos QR individuales, empleando una arquitectura Full-Stack moderna que separa la lógica de backend del cliente web.
+---
 
-🎯 Objetivo
-Desarrollar un sistema que permita administrar la información de los empleados y apoyar el proceso de control de asistencia mediante tecnologías modernas de desarrollo de software, garantizando escalabilidad y una experiencia de usuario dinámica.
+## 📋 Descripción del Proyecto
 
-🚀 Tecnologías Utilizadas
-Backend
-Java 17
+El **Sistema Inteligente de Control de Asistencia** es una aplicación web desarrollada para optimizar el registro y seguimiento de entradas y salidas del personal dentro de una organización.
 
-Spring Boot
+La solución permite gestionar la información de los empleados mediante operaciones **CRUD** y automatizar el control de asistencia mediante la generación de **códigos QR individuales**, empleando una arquitectura **Full-Stack moderna** que separa la lógica del backend del cliente web.
 
-Spring Data JPA / JDBC
+---
 
-Maven
+## 🎯 Objetivo
 
-Spring Security
+Desarrollar un sistema que permita administrar la información de los empleados y apoyar el proceso de control de asistencia mediante tecnologías modernas de desarrollo de software, garantizando:
 
-Base de Datos
-MySQL
+* Escalabilidad
+* Seguridad
+* Facilidad de mantenimiento
+* Experiencia de usuario dinámica
 
-Frontend (Modernizado)
-React (Vite)
+---
 
-Axios (para consumo de API REST)
+## 🛠️ Tecnologías Utilizadas
 
-React Router DOM
+### Backend
 
-CSS3 (Diseño responsivo)
+| Tecnología             | Uso                       |
+| ---------------------- | ------------------------- |
+| Java 17                | Lenguaje principal        |
+| Spring Boot            | Desarrollo de API REST    |
+| Spring Data JPA / JDBC | Persistencia de datos     |
+| Maven                  | Gestión de dependencias   |
+| Spring Security        | Seguridad y autenticación |
+| MySQL                  | Base de datos             |
 
-Control de Versiones
-Git
+### Frontend
 
-GitHub
+| Tecnología       | Uso                 |
+| ---------------- | ------------------- |
+| React (Vite)     | Interfaz de usuario |
+| Axios            | Consumo de API REST |
+| React Router DOM | Navegación          |
+| CSS3             | Diseño responsivo   |
 
-Generación de QR
-ZXing (Zebra Crossing)
+### Herramientas Complementarias
 
-💡 Funcionalidades Implementadas
-Gestión de Empleados
-Operaciones CRUD completas (Crear, Consultar, Actualizar y Eliminar).
+* Git
+* GitHub
+* ZXing (Zebra Crossing) para generación de códigos QR
 
-Visualización mediante tablas dinámicas interactivas con consumo de datos vía axios.
+---
 
-Gestión de Asistencia
-Generación automática de códigos QR para cada empleado.
+## 💡 Funcionalidades Implementadas
 
-Administración centralizada de registros.
+### 👨‍💼 Gestión de Empleados
 
-Dashboard Dinámico
-Visualización de estadísticas de personal (empleados, supervisores, administradores) mediante consultas en tiempo real a la base de datos.
+✔ Crear empleados
 
-Seguridad
-Configuración de autenticación mediante Spring Security.
+✔ Consultar empleados
 
-📂 Estructura del Repositorio
-Plaintext
-├── control-asistencia-backend/  # Lógica de servidor y API REST (Java/Spring Boot)
-└── frontend-asistencia/         # Interfaz de usuario dinámica (React/Vite)
-🏗️ Arquitectura Implementada
-El proyecto sigue una arquitectura por capas para garantizar escalabilidad:
+✔ Actualizar información
 
-Frontend (SPA - React): Consume la API y gestiona el estado de la aplicación.
+✔ Eliminar registros
 
-API REST (Spring Boot): Expone los endpoints para la comunicación de datos.
+✔ Visualización mediante tablas dinámicas
 
-Service Layer: Contiene la lógica de negocio.
+✔ Consumo de datos mediante Axios
 
-Repository Layer: Gestión de persistencia con JPA.
+---
 
-Base de Datos (MySQL): Almacenamiento centralizado.
+### 📱 Gestión de Asistencia
 
-🎓 Evidencia Académica
-Proyecto desarrollado como evidencia:
+✔ Generación automática de códigos QR
 
-GA7-220501096-AA2-EV01 – Codificación de módulos del software según requerimientos del proyecto
+✔ Identificación individual por empleado
 
-Programa de formación:
+✔ Administración centralizada de registros
 
-Tecnólogo en Análisis y Desarrollo de Software (SENA)
+---
 
-👤 Autor
-Jackson Montoya Mercado
+### 📊 Dashboard Dinámico
 
-Tecnólogo en Análisis y Desarrollo de Software
+✔ Estadísticas de empleados
+
+✔ Estadísticas de supervisores
+
+✔ Estadísticas de administradores
+
+✔ Consultas en tiempo real a la base de datos
+
+---
+
+### 🔒 Seguridad
+
+✔ Configuración de autenticación mediante Spring Security
+
+✔ Protección de rutas y recursos
+
+---
+
+## 📂 Estructura del Repositorio
+
+```plaintext
+Sistema-Control-Asistencia
+│
+├── control-asistencia-backend/
+│   └── API REST - Spring Boot
+│
+└── frontend-asistencia/
+    └── Aplicación Web - React + Vite
+```
+
+---
+
+## 🏗️ Arquitectura Implementada
+
+```text
+┌─────────────────┐
+│ Frontend React  │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│ API REST        │
+│ Spring Boot     │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│ Service Layer   │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│ Repository Layer│
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│ MySQL Database  │
+└─────────────────┘
+```
+
+### Capas del Sistema
+
+**Frontend (SPA - React)**
+
+* Consume la API REST.
+* Gestiona el estado de la aplicación.
+
+**API REST (Spring Boot)**
+
+* Expone los endpoints para la comunicación de datos.
+
+**Service Layer**
+
+* Contiene la lógica de negocio.
+
+**Repository Layer**
+
+* Gestiona la persistencia mediante JPA.
+
+**Base de Datos (MySQL)**
+
+* Almacenamiento centralizado de la información.
+
+---
+
+## 🎓 Evidencia Académica
+
+**Proyecto desarrollado como evidencia:**
+
+**GA7-220501096-AA2-EV01**
+
+*Codificación de módulos del software según requerimientos del proyecto.*
+
+### Programa de Formación
+
+**Tecnólogo en Análisis y Desarrollo de Software**
+
+**Servicio Nacional de Aprendizaje (SENA)**
+
+---
+
+## 👨‍💻 Autor
+
+### Jackson Montoya Mercado
+
+**Tecnólogo en Análisis y Desarrollo de Software**
 
 Servicio Nacional de Aprendizaje – SENA
 
-2026
+📅 Año: 2026
