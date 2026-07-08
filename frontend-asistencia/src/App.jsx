@@ -1,17 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Dashboard from './components/Dashboard'; // Asegúrate de que esta ruta sea correcta
-import Empleados from './components/Empleados'; // Asegúrate de que esta ruta sea correcta
+import Login from './components/Login';
+import Dashboard from './components/Dashboard';
+import Empleados from './components/Empleados';
+import Scanner from './components/Scanner';
 
 function App() {
     return (
         <Router>
             <Routes>
-                {/* Aquí definimos que la raíz "/" sea el Dashboard */}
-                <Route path="/" element={<Dashboard />} />
-
-                {/* Y "/empleados" sea la lista */}
+                <Route path="/" element={<Login />} />
+                <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/empleados" element={<Empleados />} />
+                <Route path="/scanner" element={<Scanner />} />
             </Routes>
         </Router>
     );

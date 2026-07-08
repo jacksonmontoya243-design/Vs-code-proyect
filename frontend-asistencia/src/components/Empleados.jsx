@@ -1,52 +1,79 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import './Empleados.css';
 
 const Empleados = () => {
-    // 1. Definimos el estado para almacenar la lista de empleados que viene de la API
     const [empleados, setEmpleados] = useState([]);
 
-    // 2. useEffect ejecuta la carga inicial de datos cuando el componente se monta
     useEffect(() => {
         cargarEmpleados();
     }, []);
 
-    // 3. Función asíncrona que consume el endpoint de nuestro backend en Java
     const cargarEmpleados = async () => {
         try {
-            // Realizamos una petición GET al controlador de Spring Boot
-            const respuesta = await axios.get('http://localhost:8080/api/empleados');
-            // Guardamos los datos recibidos en el estado 'empleados'
+            const respuesta = await axios.get('/api/empleados');
             setEmpleados(respuesta.data);
         } catch (error) {
-            console.error("Error al conectar con Spring Boot:", error);
+            console.error('Error al conectar con Spring Boot:', error);
         }
     };
 
-    console.log("¿Se está cargando el componente?");
-
     return (
-        <div className="container">
-            <h2>Gestión de empleados</h2>
-            <table id="tabla-empleados-especifica" className="tabla-empleados">
-                <thead>
-                <tr>
-                    <th>ID</th><th>Nombre</th><th>Documento</th><th>Cargo</th>
-                </tr>
-                </thead>
-                <tbody>
-                {/* 4. Mapeamos el arreglo de empleados para crear una fila por cada registro */}
-                {empleados.map((emp) => (
-                    <tr key={emp.id}>
-                        <td>{emp.id}</td>
-                        <td>{emp.nombre}</td>
-                        <td>{emp.documento}</td>
-                        <td>{emp.cargo}</td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
-        </div>
+        <main className="employees-page">
+            <header className="employees-header">
+                <div>
+                    <p className="eyebrow">Talento humano</p>
+                    <h1>Gestion de empleados</h1>
+                    <p>Consulta la informacion basica del personal registrado.</p>
+                </div>
+                <Link to="/dashboard" className="back-link">Volver al tablero</Link>
+            </header>
+
+            <section className="employees-table-card">
+                <div className="table-toolbar">
+                    <h2>Listado general</h2>
+                    <span>{empleados.length} registros</span>
+                </div>
+
+                <div className="table-wrap">
+                    <table className="employees-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Documento</th>
+                                <th>Cargo</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {empleados.map((emp) => (
+                                <tr key={emp.id}>
+                                    <td>{emp.id}</td>
+                                    <td>{emp.nombre}</td>
+                                    <td>{emp.documento}</td>
+                                    <td>{emp.cargo}</td>
+                                    <td>
+                                        <button 
+                                            className="qr-view-btn"
+                                            onClick={() => window.open(`/qr/empleado_${emp.id}.png`, '_blank')}
+                                        >
+                                            Ver QR
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                            {empleados.length === 0 && (
+                                <tr>
+                                    <td colSpan="5" className="empty-state">No hay empleados para mostrar.</td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
     );
 };
 

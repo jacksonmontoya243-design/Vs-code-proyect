@@ -1,0 +1,10 @@
+target/
+node_modules/
+frontend-asistencia/node_modules/
+frontend-asistencia/dist/
+.git/
+.idea/
+*.log
+mvnw
+mvnw.cmd
+.mvn/

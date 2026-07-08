@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // CORRECCIÓN: Importación necesaria
+import { Link, useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 
 const Dashboard = () => {
+    const navigate = useNavigate();
     const [stats, setStats] = useState({
         empleados: 0,
         admins: 0,
@@ -13,86 +14,93 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchStats = async () => {
             try {
-                const res = await axios.get('http://localhost:8080/api/empleados/count-stats');
+                const res = await axios.get('/api/empleados/count-stats');
 
-                // Aquí asignamos el objeto recibido directamente
-                // Asegúrate de que las llaves coincidan con las que ves en el console.log
                 setStats({
                     empleados: res.data.empleados || 0,
                     admins: res.data.admins || 0,
                     supervisores: res.data.supervisores || 0
                 });
-
             } catch (error) {
-                console.error("Error al cargar estadísticas:", error);
+                console.error('Error al cargar estadisticas:', error);
             }
         };
+
         fetchStats();
     }, []);
 
     return (
-        <div className="dashboard"> {/* CORRECCIÓN: Contenedor padre obligatorio */}
-
-            {/* SIDEBAR */}
-            <div className="sidebar">
-                <div className="logo">
-                    <i className="fa-solid fa-qrcode"></i>
-                    <h2>AsistenciaPro</h2>
+        <div className="dashboard-shell">
+            <aside className="sidebar">
+                <div className="brand">
+                    <div className="brand-icon">CA</div>
+                    <div>
+                        <h2>AsistenciaPro</h2>
+                        <span>Panel administrativo</span>
+                    </div>
                 </div>
 
-                <ul>
+                <nav className="side-nav" aria-label="Navegacion principal">
                     <li>
-                        <Link to="/">
-                            <i className="fa-solid fa-house"></i> Inicio
+                        <Link to="/dashboard" className="active">
+                            <span>Inicio</span>
                         </Link>
                     </li>
                     <li>
                         <Link to="/empleados">
-                            <i className="fa-solid fa-users"></i> Empleados
+                            <span>Empleados</span>
                         </Link>
                     </li>
-                </ul>
+                </nav>
 
-                <button className="logout-btn">
-                    <i className="fa-solid fa-right-from-bracket"></i> Cerrar sesión
+                <button className="logout-btn" onClick={() => navigate('/')}>
+                    Cerrar sesion
                 </button>
-            </div>
+            </aside>
 
-            {/* CONTENIDO PRINCIPAL */}
-            <div className="main-content">
-                <div className="topbar">
-                    <div className="hero-banner">
-                        <div className="hero-info">
-                            <h1>Sistema Inteligente de Control de Asistencia</h1>
-                            <p>Administra empleados, registra asistencias mediante QR.</p>
-                            <button className="hero-btn"><i className="fa-solid fa-qrcode"></i> Abrir escáner QR</button>
-                        </div>
-                        <div className="hero-image">
-                            <img src="https://cdn-icons-png.flaticon.com/512/2920/2920349.png" alt="QR" />
-                        </div>
+            <main className="main-content">
+                <header className="page-header">
+                    <div>
+                        <p className="eyebrow">Resumen general</p>
+                        <h1>Control de asistencia</h1>
+                        <p>Monitorea empleados, permisos y accesos desde un tablero claro y centralizado.</p>
                     </div>
-                </div>
+                    <button 
+                        className="secondary-button"
+                        onClick={() => navigate('/scanner')}
+                    >
+                        Abrir escaner QR
+                    </button>
+                </header>
 
-                {/* TARJETAS DINÁMICAS */}
-                <div className="cards">
-                    <div className="card blue">
-                        <i className="fa-solid fa-users"></i>
-                        <h3>Total empleados</h3>
-                        <span>{stats.empleados}</span>
+                <section className="stats-grid" aria-label="Indicadores principales">
+                    <article className="stat-card">
+                        <span className="stat-label">Total empleados</span>
+                        <strong>{stats.empleados}</strong>
+                        <p>Personas registradas en el sistema.</p>
+                    </article>
+                    <article className="stat-card">
+                        <span className="stat-label">Administradores</span>
+                        <strong>{stats.admins}</strong>
+                        <p>Usuarios con permisos de gestion.</p>
+                    </article>
+                    <article className="stat-card">
+                        <span className="stat-label">Supervisores</span>
+                        <strong>{stats.supervisores}</strong>
+                        <p>Responsables de seguimiento operativo.</p>
+                    </article>
+                </section>
+
+                <section className="work-panel">
+                    <div>
+                        <p className="eyebrow">Proximo modulo</p>
+                        <h2>Registro por codigo QR</h2>
+                        <p>El espacio queda preparado para activar el escaner y consultar registros recientes sin saturar el tablero.</p>
                     </div>
-                    <div className="card purple">
-                        <i className="fa-solid fa-user-shield"></i>
-                        <h3>Administradores</h3>
-                        <span>{stats.admins}</span>
-                    </div>
-                    <div className="card green">
-                        <i className="fa-solid fa-user-check"></i>
-                        <h3>Supervisores</h3>
-                        <span>{stats.supervisores}</span>
-                    </div>
-                </div>
-            </div>
-        </div> // Cierre del contenedor padre .dashboard
+                    <Link to="/empleados" className="text-link">Ver empleados</Link>
+                </section>
+            </main>
+        </div>
     );
 };
 

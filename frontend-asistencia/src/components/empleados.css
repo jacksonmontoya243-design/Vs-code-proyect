@@ -1,53 +1,132 @@
-/* Contenedor padre */
-.container-empleados {
-    padding: 40px;
-    background-color: #0f172a;
+﻿.employees-page {
     min-height: 100vh;
+    padding: 36px;
+    background: #f4f7fb;
+    color: #172033;
 }
 
-/* Tabla con diseño moderno */
-.tabla-moderna {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+.employees-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 24px;
 }
 
-/* Cabecera vibrante */
-.tabla-moderna thead tr {
-    background-color: #3b82f6;
+.employees-header h1 {
+    font-size: 36px;
+    line-height: 1.08;
+    margin: 0 0 10px;
+}
+
+.employees-header p {
+    color: #5f6d7e;
+    margin: 0;
+}
+
+.back-link {
+    min-height: 42px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 8px;
+    background: #123c69;
     color: #ffffff;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.employees-table-card {
+    border: 1px solid #e4e8ef;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 16px 40px rgba(32, 49, 74, 0.06);
+    overflow: hidden;
+}
+
+.table-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    padding: 22px 24px;
+    border-bottom: 1px solid #e4e8ef;
+}
+
+.table-toolbar h2 {
+    font-size: 20px;
+    margin: 0;
+}
+
+.table-toolbar span {
+    color: #47718f;
+    font-weight: 800;
+}
+
+.table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.employees-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 680px;
+}
+
+.employees-table th,
+.employees-table td {
+    padding: 16px 24px;
     text-align: left;
+    border-bottom: 1px solid #edf1f5;
 }
 
-.tabla-moderna th {
-    padding: 20px;
-    font-weight: 600;
+.employees-table th {
+    background: #f8fafc;
+    color: #405066;
+    font-size: 13px;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
-    font-size: 14px;
 }
 
-/* Filas con colores diferenciados */
-.tabla-moderna tbody tr {
-    background-color: #1e293b;
-    color: #f1f5f9;
-    transition: all 0.3s ease;
+.employees-table td {
+    color: #26364b;
 }
 
-/* Fila par para mejor legibilidad */
-.tabla-moderna tbody tr:nth-child(even) {
-    background-color: #273548;
+.employees-table tbody tr:hover {
+    background: #f8fbfd;
 }
 
-/* Efecto al pasar el cursor */
-.tabla-moderna tbody tr:hover {
-    background-color: #334155;
-    transform: scale(1.005);
+.empty-state {
+    color: #738196;
+    text-align: center;
 }
 
-.tabla-moderna td {
-    padding: 18px;
-    border-bottom: 1px solid #334155;
+.qr-view-btn {
+    background: #edf5fa;
+    color: #123c69;
+    border: 1px solid #d8e3ed;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 160ms ease;
+}
+
+.qr-view-btn:hover {
+    background: #123c69;
+    color: #ffffff;
+    border-color: #123c69;
+}
+
+@media (max-width: 720px) {
+    .employees-page {
+        padding: 22px;
+    }
+
+    .employees-header,
+    .table-toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }

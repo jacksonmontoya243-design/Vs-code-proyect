@@ -63,14 +63,17 @@ public class qrgeneratorService {
                 }
             }
 
-            // 5. RUTA DE DESTINO: Se define el almacenamiento dentro del directorio estático del proyecto
-            // Esto permite que el frontend o la app móvil puedan consumir la imagen mediante una URL estática
-            String ruta =
-                    "src/main/resources/static/qr/"
-                            + nombreArchivo
-                            + ".png";
+            // 5. RUTA DE DESTINO: Se define el almacenamiento
+            // Usamos una ruta absoluta o relativa al directorio de ejecución
+            String directorioBase = "static/qr/";
+            File directorio = new File(directorioBase);
+            if (!directorio.exists()) {
+                directorio.mkdirs();
+            }
 
-            // 6. PERSISTENCIA FÍSICA: Escribir y guardar el archivo PNG en el disco duro del servidor
+            String ruta = directorioBase + nombreArchivo + ".png";
+
+            // 6. PERSISTENCIA FÍSICA: Escribir y guardar el archivo PNG
             ImageIO.write(
                     image,
                     "png",

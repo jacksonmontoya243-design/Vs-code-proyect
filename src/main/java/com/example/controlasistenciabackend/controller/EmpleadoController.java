@@ -4,6 +4,7 @@ import com.example.controlasistenciabackend.entity.Empleado;
 import com.example.controlasistenciabackend.repository.EmpleadoRepository;
 import com.example.controlasistenciabackend.service.qrgeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 import java.util.HashMap;
@@ -20,6 +21,9 @@ public class EmpleadoController {
     @Autowired
     private qrgeneratorService qrGeneratorService;
 
+    @Value("${app.qr.base-url:http://localhost:8080}")
+    private String qrBaseUrl;
+
     @GetMapping
     public List<Empleado> listar() {
         return repository.findAll();
@@ -28,7 +32,7 @@ public class EmpleadoController {
     @PostMapping
     public Empleado guardar(@RequestBody Empleado empleado) {
         Empleado nuevoEmpleado = repository.save(empleado);
-        String datosQR = "http://192.168.1.6:8080/empleado/" + nuevoEmpleado.getId();
+        String datosQR = qrBaseUrl + "/empleado/" + nuevoEmpleado.getId();
         qrGeneratorService.generarQR(datosQR, "empleado_" + nuevoEmpleado.getId());
         return nuevoEmpleado;
     }

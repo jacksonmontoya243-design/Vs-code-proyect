@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -14,7 +15,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable()) // Desactiva la protección CSRF para que React pueda enviar POST/PUT
-                .cors(cors -> {})           // Habilita la configuración CORS que ya definimos
+                .cors(Customizer.withDefaults())           // Habilita la configuración CORS que ya definimos
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().permitAll() // Permite todas las peticiones sin pedir usuario/contraseña
                 );

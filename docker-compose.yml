@@ -1,0 +1,46 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: control-asistencia-db
+    restart: always
+    environment:
+      MYSQL_DATABASE: control_asistencia
+      MYSQL_ROOT_PASSWORD: Julio071992..
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  backend:
+    build: .
+    container_name: control-asistencia-backend
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/control_asistencia?serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=Julio071992..
+      - APP_QR_BASE_URL=http://localhost:8080
+    ports:
+      - "8080:8080"
+    volumes:
+      - qr_data:/app/static/qr
+
+  frontend:
+    build: ./frontend-asistencia
+    container_name: control-asistencia-frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  mysql_data:
+  qr_data:
