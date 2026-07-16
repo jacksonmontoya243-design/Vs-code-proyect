@@ -1,36 +1,40 @@
 package com.example.controlasistenciabackend.controller;
 
+import com.example.controlasistenciabackend.dto.LoginRequest;
+import com.example.controlasistenciabackend.dto.LoginResponse;
 import com.example.controlasistenciabackend.entity.Usuario;
 import com.example.controlasistenciabackend.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
 
     @Autowired
-    private AuthService authService; // ¡Ahora está dentro de la clase!
+    private AuthService authService;
 
     @PostMapping("/register")
-    public ResponseEntity<String> registrar(@RequestBody Usuario usuario) {
-        authService.registrarUsuario(usuario);
-        return ResponseEntity.ok("Usuario registrado exitosamente");
+    public ResponseEntity<?> registrar(@RequestBody Usuario usuario) {
+        try {
+            authService.registrarUsuario(usuario);
+            return ResponseEntity.ok(Map.of("mensaje", "Usuario registrado exitosamente"));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Error al registrar: " + e.getMessage()));
+        }
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Usuario usuario) {
-        System.out.println("DEBUG: Recibido usuario: " + usuario.getUsername());
-        System.out.println("DEBUG: Recibido password: " + usuario.getPassword());
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        String token = authService.validarLogin(loginRequest.getUsername(), loginRequest.getPassword());
 
-        Usuario authUser = authService.validarLogin(usuario.getUsername(), usuario.getPassword());
-
-        if (authUser != null) {
-            return ResponseEntity.ok("Login exitoso");
+        if (token != null) {
+            return ResponseEntity.ok(new LoginResponse(token, loginRequest.getUsername(), "Login exitoso"));
         } else {
-            System.out.println("DEBUG: Validación fallida en la base de datos");
-            return ResponseEntity.status(401).body("Credenciales incorrectas");
+            return ResponseEntity.status(401).body(Map.of("error", "Credenciales incorrectas"));
         }
     }
 }
